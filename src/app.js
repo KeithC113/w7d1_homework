@@ -4,11 +4,23 @@ document.addEventListener('DOMContentLoaded', () =>{
   new Vue({
     el: '#app',
     data:{
-      greeting: "Hello World!"
+      tasks:[
+        {job: "clean the toilet", isComplete:false},
+        {job: "buy the shopping", isComplete:false},
+        {job: "have a shower", isComplete:true}
+      ],
+      newTask:""
     },
     methods: {
-      updateGreeting: function(name){
-          this.greeting = "Hello, " + name;
+      saveNewTask: function(){
+        this.tasks.push({
+          job: this.newTask,
+          isComplete: false
+        });
+        this.newTask="";
+      },
+      completeTask: function(index){
+        this.tasks[index].isComplete=true;
       }
     }
   });

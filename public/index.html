@@ -5,11 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Week7 Day 1 Homework</title>
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
   <script src="./js/bundle.js"></script>
 </head>
 <body>
-  <div id="app"> {{ greeting }}</div>
+  <h1> Keith's todo list for the week </h1>
+  <div id="app">
+    <form v-on:submit.prevent="saveNewTask">
+      <label for="new-task">I also need to </label>
+      <input type="text" id="new-task" v-model="newTask">
+      <input type="submit" value=" Add this task to list">
+    </form>
+    <ul>
+      <li v-for = "(task, index) in tasks" :class = "task.isComplete ? 'complete' : 'not-complete'">
+        <span>{{task.job}}</span>
+        <span v-if = "task.isComplete"> Job Done! </span>
+        <button v-if = "!task.isComplete" v-on:click="completeTask(index)"> To do </button>
+      </li>
+    </ul>
+  </div>
 </body>
 </html>
